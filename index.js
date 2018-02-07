@@ -11,6 +11,7 @@ function getSearchIndex(context) {
         var ignoreSpecialCharacters = context.config.get('pluginsConfig.searchLanguages.ignoreSpecialCharacters')
                                       || context.config.get('searchLanguages.ignoreSpecialCharacters');
         var lang = context.config.get('pluginsConfig.searchLanguages.lang');
+        var multi = context.config.get('pluginsConfig.searchLanguages.multiLanguage');
         if (lang) {
             require('lunr-languages/lunr.stemmer.support.js')(lunr);
             if (lang === 'jp') {
@@ -18,9 +19,16 @@ function getSearchIndex(context) {
             }
             require('lunr-languages/lunr.' + lang + '.js')(lunr);
         }
+        if (multi) {
+            require('lunr-languages/lunr.multi.js')(lunr);
+        }
         searchIndex = lunr(function () {
             if (lang) {
-                this.use(lunr[lang]);
+                if (multi) {
+                    this.use(lunr.multiLanguage(lang, 'en'));
+                } else {
+                    this.use(lunr[lang]);
+                }
             }
             this.ref('url');
 
