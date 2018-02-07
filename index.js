@@ -10,8 +10,7 @@ function getSearchIndex(context) {
         // Create search index
         var ignoreSpecialCharacters = context.config.get('pluginsConfig.searchLanguages.ignoreSpecialCharacters')
                                       || context.config.get('searchLanguages.ignoreSpecialCharacters');
-        // var lang = context.config.get('pluginsConfig.searchLanguages.lang');
-        var lang = 'en';
+        var lang = context.config.get('pluginsConfig.searchLanguages.lang');
         if (lang) {
             require('lunr-languages/lunr.stemmer.support.js')(lunr);
             if (lang === 'jp') {
