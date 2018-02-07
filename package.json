@@ -18,7 +18,7 @@
   "dependencies": {
     "gitbook-plugin-lunr": "1.2.0",
     "lunr": "0.5.12",
-    "lunr-languages": "yoshidax/lunr-languages#yoshidax_build"
+    "lunr-languages": "MihaiValentin/lunr-languages"
   },
   "devDependencies": {
     "uglify-js": "2.7.5"
